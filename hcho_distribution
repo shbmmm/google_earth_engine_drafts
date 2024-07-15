@@ -1,0 +1,30 @@
+var center = ee.Geometry.Point([72.866803,19.112031]);
+
+var roi = center.buffer(500).bounds();
+
+var startDate = '2021-01-01';
+var endDate = '2021-12-31';
+var dateRange = ee.DateRange(startDate, endDate);
+
+// Load the Sentinel-5P HCHO dataset and filter by date range
+var s5p_HCHO = ee.ImageCollection('COPERNICUS/S5P/NRTI/L3_HCHO')
+                .filterDate(dateRange)
+                .select(['tropospheric_HCHO_column_number_density', 
+                         'tropospheric_HCHO_column_number_density_amf', 
+                         'HCHO_slant_column_number_density']);
+
+var annualMeanHCHO = s5p_HCHO.mean();
+
+var sampled = annualMeanHCHO.sample({
+  region: roi,
+  scale: 100, 
+  geometries: true
+});
+
+print('Annual mean HCHO values for each pixel in the ROI:', sampled);
+
+Export.table.toDrive({
+  collection: sampled,
+  description: 'Annual_Mean_HCHO_Values_Per_Pixel_100mts_Resolution',
+  fileFormat: 'CSV'
+});
