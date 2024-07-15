@@ -1,6 +1,3 @@
-Here's a description for your `google_earth_engine_drafts` repository:
-
----
 
 # google_earth_engine_drafts
 
