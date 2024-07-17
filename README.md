@@ -1,6 +1,8 @@
 
 # google_earth_engine_drafts
 
+[REPOSITORY UNDER CONSTRUCTION,but feel free to check out scripts]
+
 ## Overview
 
 `google_earth_engine_drafts` is a repository dedicated to the development and experimentation with Google Earth Engine (GEE) scripts. This repository contains drafts and runs of GEE code editors, along with various plots generated from the analysis. It serves as a sandbox for testing and refining scripts before implementing them in more polished projects.
